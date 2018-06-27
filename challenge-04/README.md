@@ -11,6 +11,8 @@ let isTruthy = (argumento) => {
   return argumento ? true : false
 }
 
+//Na correção Daciuk utilizou apenas !!argumento sem precisar usar condição ternaria
+
 // Invoque a função criada acima, passando todos os tipos de valores `falsy`.
 isTruthy(undefined) //False
 isTruthy(null)  //False
@@ -34,6 +36,8 @@ isTruthy(true) //True
 isTruthy(1+1)  //True
 isTruthy(" ")  //True
 isTruthy('Espaço acima')  //True
+
+//Na correção Daciuk mostrou que é possivel colocar função como argumento de uma função além de array e objetos.
 
 
 /*
@@ -99,6 +103,8 @@ carro.obterMarcaModelo = () => {
   return marcaModelo
 }
 
+//Na correção do exercicio, Daciuk usa return "Esse carro é um " + carro.obterMarca() + " " + carro.obterModelo() + "."
+
 /*
 Crie um método que irá adicionar pessoas no carro. Esse método terá as
 seguintes características:
@@ -117,21 +123,20 @@ citado acima, no lugar de "pessoas".
 */
 carro.adicionarPessoas = (qtdPessoas) => {
 
-  let pessoa = "pessoas"
-  let qtdAssentos = carro.assentos - carro.quantidadedePessoas  
+  let totalPessoas = carro.quantidadedePessoas + qtdPessoas
+  let qtdAssentos = carro.assentos - carro.quantidadedePessoas 
+  let pessoa = qtdAssentos === 1 ? "pessoa" : "pessoas"
 
-  if (!qtdAssentos) {
+  if (carro.quantidadedePessoas === carro.assentos && totalPessoas >= carro.assentos) {
     return "O carro já está lotado!"
   }
-  else if (qtdPessoas > qtdAssentos) {
-    pessoa = qtdAssentos == 1 ? "pessoa" : "pessoas"
-    return "Só cabem mais " + qtdAssentos + " " + pessoa
-  }
-  else {
-    carro.quantidadedePessoas = qtdPessoas + carro.quantidadedePessoas
-    return "Já temos " + carro.quantidadedePessoas + " pessoas no carro!"
+
+  if (totalPessoas > carro.assentos) {
+    return "Só cabem mais " + qtdAssentos + " " + pessoa + "!"
   }
   
+    carro.quantidadedePessoas = qtdPessoas + carro.quantidadedePessoas
+    return "Já temos " + carro.quantidadedePessoas + " pessoas no carro!"    
 }
 
 /*
@@ -169,7 +174,7 @@ carro.adicionarPessoas(2) //"Só cabem mais 3 pessoas"
 carro.adicionarPessoas(3) //Já temos 5 pessoas no carro!"
 
 // Tire 4 pessoas do carro.
-carro.quantidadedePessoas = carro.quantidadedePessoas - 4 //1
+  carro.adicionarPessoas(-4)//1
 
 // Adicione 10 pessoas no carro.
  carro.adicionarPessoas(10) //Só cabem mais 4 pessoas

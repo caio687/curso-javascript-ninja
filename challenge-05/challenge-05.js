@@ -36,7 +36,7 @@ Invoque a função criada acima, fazendo-a retornar todos os valores do último
 array criado.
 */
 
-for (let indice = 0; indice <= arrayTipos.length; indice++) {
+for (let indice = 0; indice < arrayTipos.length; indice++) {
     console.log(outroRetornaArray(arrayTipos, indice))
 }
 
@@ -55,49 +55,52 @@ propriedades:
 - Se o parâmetro não for passado, a função deve retornar o objeto com todos
 os livros.
 */
-function book(nomeDoLivro) {
-    let booksName = {
-        livro1: {
+function book(booksName) {
+    let allBooks = {
+        "livro 1": {
             quantidadePaginas: 0,
             autor: "desconhecido",
             editora: "desconhecido"
         },
-        livro2: {
+        "livro 2 do parça": {
             quantidadePaginas: 0,
             autor: "desconhecido",
             editora: "desconhecido"
         },
-        livro3: {
+        "livro 3": {
             quantidadePaginas: 0,
             autor: "desconhecido",
             editora: "desconhecido"
         }
     }
-        return booksName
+        return !booksName ? allBooks : allBooks[ booksName ]
 }
 
 /*
 Usando a função criada acima, imprima o objeto com todos os livros.
 */
-book()
+console.log( book() )
 
 /*
 Ainda com a função acima, imprima a quantidade de páginas de um livro qualquer,
 usando a frase:
 "O livro [NOME_DO_LIVRO] tem [X] páginas!"
 */
-console.log("O livro livro1 tem " + book().livro1.quantidadePaginas + " páginas!")
+
+let bookName = "livro 1" 
+
+console.log("O livro " + bookName + " tem " + book("livro 1").quantidadePaginas + " páginas!")
 
 /*
 Ainda com a função acima, imprima o nome do autor de um livro qualquer, usando
 a frase:
 "O autor do livro [NOME_DO_LIVRO] é [AUTOR]."
 */
-console.log("O livro livro1 tem " + book().livro1.quantidadePaginas + " páginas!")
+console.log("O autor do livro " + bookName + " é " + book("livro 1").autor + ".")
 
 /*
 Ainda com a função acima, imprima o nome da editora de um livro qualquer, usando
 a frase:
 "O livro [NOME_DO_LIVRO] foi publicado pela editora [NOME_DA_EDITORA]."
 */
-console.log("O livro livro1 tem " + book().livro1.quantidadePaginas + " páginas!")
+console.log("O livro " + bookName + " foi publicado pela editora " + book("livro 1").editora + ".")

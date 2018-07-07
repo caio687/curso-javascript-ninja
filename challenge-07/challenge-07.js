@@ -88,7 +88,7 @@ for(let numPar = 100; numPar <= 120; numPar++) {
 
 console.log( 'Números ímpares entre 111 e 125:' );
 
-for(let numImpar = 100; numImpar <= 120; numImpar++) {
+for(let numImpar = 111; numImpar <= 125; numImpar++) {
   
   if ((numImpar % 2) > 0) {
     console.log(numImpar)

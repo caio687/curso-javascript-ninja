@@ -73,8 +73,7 @@ function calculator(operador) {
         result =  num1 % num2
         break
       default:
-        return "Operação inválida."
-        break;
+        return "Operação inválida."        
     }
 
     return 'Resultado da operação: ' + num1 + ' ' + operador + ' ' + num2 + ' = ' + result + '.'

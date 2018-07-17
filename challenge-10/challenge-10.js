@@ -11,12 +11,12 @@
   resolver o problema corretamente.
   */
  
-  var five = new Number('5');
+  var five = Number('5');
   
 
   console.log( five + ' é número?', typeof five === 'number' );
 
-  var concat = new String(10 + 10);
+  var concat = 10 + String(10);
   console.log( '"' + concat + '" é uma string? E é igual a "1010"?', typeof concat === 'string' );
 
   /*
@@ -64,6 +64,10 @@
     return operation[ operator ] ? true : false;
   }
 
+  //Exemplo de como o Daciuk fez:
+
+
+
    /*
   Agora vamos criar a calculadora.
   - Crie uma função chamada `calculator`, que receberá como parâmetro um
@@ -81,20 +85,19 @@
     if (!isOperatorValid(operator)) {
 
       return false;
-    } else {
+    }
 
-      return function (num1, num2) {
+    return function (num1, num2) {
       
-        if (!typeof num1 === 'number' && typeof num2 === 'number') {
+      if (!typeof num1 === 'number' && typeof num2 === 'number') {
   
-          return false
-        } else {
-  
-          return operation[ operator ](num1, num2)
-        } 
-        
+        return false
+      } 
+
+      return operation[ operator ](num1, num2)
+                
       }
-    }    
+    
   }
 
 
@@ -169,23 +172,44 @@
   */
   operationSignal = '-'
   let subtraction = calculator(operationSignal)
-  console.log(showOperationMessage(operationSignal, number1, number2))  
-  console.log(subtraction(number1, number2))
+  if (subtraction) {
+    console.log(showOperationMessage(operationSignal, number1, number2))  
+    console.log(subtraction(number1, number2))
+  } else {
+    console.log(showErrorMessage(operationSignal))
+  }
+
 
   operationSignal = '*'
   let multiplication = calculator(operationSignal)
-  console.log(showOperationMessage(operationSignal, number1, number2))
-  console.log(multiplication(number1, number2))
+  if (multiplication) {
+    console.log(showOperationMessage(operationSignal, number1, number2))
+    console.log(multiplication(number1, number2))
+  } else {
+    console.log(showErrorMessage(operationSignal))
+  }
+  
 
   operationSignal = '/'
   let division = calculator(operationSignal)
-  console.log(showOperationMessage(operationSignal, number1, number2))
-  console.log(division(number1, number2))
+  if (division) {
+    console.log(showOperationMessage(operationSignal, number1, number2))
+    console.log(division(number1, number2))
+  } else {
+    console.log(showErrorMessage(operationSignal))
+  }
+
 
   operationSignal = '%'
   let mod = calculator(operationSignal)
-  console.log(showOperationMessage(operationSignal, number1, number2))
-  console.log(mod(number1, number2))
+
+  if (mod) {
+    console.log(showOperationMessage(operationSignal, number1, number2))
+    console.log(mod(number1, number2))
+  } else {
+    console.log(showErrorMessage(operationSignal))
+  }
+
 
   /*
   Repita o PASSO 2 novamente, mas passando um operador inválido, para ver se

@@ -11,10 +11,9 @@
   */
   let once = false
 
-  do {
-    once = true
+  do {    
     console.log('Entrou ao menos uma vez!')
-  } while (once = false);
+  } while (once);
   
   /*
   Crie um objeto chamado `person`, que receba as seguintes propriedades:
@@ -92,8 +91,9 @@
 
     if ( (count % 2) === 0) {
       
-      numbers.push(count)
+      continue
     }
+    numbers.push(count)
      
   }
   console.log(numbers)

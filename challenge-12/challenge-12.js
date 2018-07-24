@@ -79,8 +79,6 @@
 
 	console.log( '\nAgora os livros são objetos novamente:' );
 
-	console.log(books)
-
 	
 	/*
 	Mostre no console todas as propriedades e valores de todos os livros,
@@ -98,6 +96,14 @@
 			console.log(prop[index]  + ": " + books[count][prop[index]] )		
 		}
 		
+	}
+
+	//Forma Feita pelo Daciuk na correção do exercicio:
+	for (var i = 0; i < books.length; i++) {
+		
+		for (var propi in books[i]) {
+			console.log(propi + ': ' + books[i][propi])
+		}
 	}
 
 

@@ -117,12 +117,12 @@
 	- `estado`: que será o estado do array `brasil`.
 	*/
 
-	let newBrasil = []
-	let indice = 0
-	brasil.forEach((est) => {
+	let newBrasil = []	
+	brasil.forEach((est, indice) => {
 
-		newBrasil.push({id: indice, estado: est})
-		indice++
+		newBrasil.push({
+			id: indice,
+			estado: est})		
 	})
 
 
@@ -140,6 +140,7 @@
 	- "Nem todos os estados tem mais de 7 letras!"
 	*/
 	console.log( '\nTodos os estados de `brasil` tem mais de 7 letras?' );
+	
 	let temMaisDe7 = brasil.every( (estado) => {
 		return estado.length > 7
 	})
@@ -177,9 +178,9 @@
 	- "[ESTADO] pertence ao Brasil."
 	Atribua o novo array a uma variável chamada `map`.
 	*/
-	let map = newBrasil.map((est) => {
-		est.id += 1
-		est.estado = est.estado + ' pertence ao Brasil'
+	let map = newBrasil.map((est, index) => {
+		est.id++
+		est.estado += ' pertence ao Brasil'
 		return est
 	})
 

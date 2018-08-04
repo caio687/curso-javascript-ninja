@@ -11,18 +11,12 @@
   Mostre esse array no console.
   */
 
-  let numberObjects = [
-    { number: 1 },
-    { number: 2 },
-    { number: 3 },
-    { number: 4 },
-    { number: 5 },
-    { number: 6 },
-    { number: 7 },
-    { number: 8 },
-    { number: 9 },
-    { number: 10 }
-  ]
+  let numberObjects = []
+
+  for (let i = 1; i <= 10; i++) {
+    numberObjects.push({number: i})    
+  }
+
 
   console.log( 'Number Objects Array:' );
   console.log(numberObjects)
@@ -31,10 +25,13 @@
   Crie um array chamado `justNumbers`, que terá como elementos somente os
   números do array criado acima. Mostre esse novo array no console.
   */
+
+  console.log( '\nJust Numbers:' );
+
   let justNumbers= numberObjects.map((item, index, array) => {
     return item.number
   })
-  console.log( '\nJust Numbers:' );
+
   console.log(justNumbers)
   
 
@@ -92,9 +89,9 @@
   let name = ['Ca', 'i', 'o']
 
   console.log( '\nSeu nome na língua do "P":' );
-  console.log(name.reduce((acumulado, atual, index, array) => {
-    return acumulado + ('p' + atual)
-    
+
+  console.log(name.reduce((acumulado, atual, index, array) => {   
+    return acumulado + 'p' + atual   
   }, ''))
 
   /*
@@ -103,7 +100,7 @@
   */
   let inversedName = name.reduceRight((acumulado, atual, index, array) => {
     return acumulado + atual
-  }, '')
+  })
 
   console.log( '\nInversed Name:' );
   console.log(inversedName)
@@ -125,7 +122,7 @@
   */
   console.log( '\nExiste um { number: 2 } em numberObjects?' );
     
-  if(numberObjects.indexOf(2)) {
+  if(numberObjects.indexOf({ number: 2}) > -1) {
     console.log('Existe um objeto { number: 2 } em numberObjects!')
   } else {
     console.log('Não existe um objeto { number: 2 } em numberObjects :(')
@@ -137,7 +134,7 @@
   */
   console.log( '\nE buscando a partir do último índice, o { number: 2 } existe?' );
 
-  if(numberObjects.lastIndexOf(2, 2)) {
+  if(numberObjects.lastIndexOf({ number: 2}, 2) > -1) {
     console.log('Existe um objeto { number: 2 } em numberObjects!')
   } else {
     console.log('Não existe um objeto { number: 2 } em numberObjects :(')

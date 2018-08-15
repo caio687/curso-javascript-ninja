@@ -24,6 +24,15 @@
     console.log( letter + ' é a ' + ( position + 1 ) + 'ª letra do meu nome.')
   });
 
+  /* solução feita na correção do Daciuk:
+
+  var name1 = 'Caio'
+  for(var i = 0, len = name1.length; i < len; i++) {
+    console.log(name1.charAt(i) + ' é a ' + (i + 1) + 'ª letra do meu nome.')
+  }
+
+  */
+
   /*
   - Declare uma variável chamada `fullName`, que receba seu nome completo,
   escrito no formato de slug (caixa baixa e palavras separadas por um traço).
@@ -39,23 +48,16 @@
 
   console.log( '\nNome convertido à partir de um slug:' );
   
-  let fullNameSlug = 'fabio-pereira'  
+  let fullNameSlug = 'caio-cesar-de-souza-santos'  
 
   function slugToNormal(name) {
-    //cria um array com a quebra '-' separando os nomes
-    let nameArray = name.split('-')
+    //cria um array com a quebra '-' separando os nomes e depois com map deixa a primeira letra de cada nome maiuscula e com join junta os arrays e forma uma string.
+    let newName = name.split('-').map(name => {
 
-    //cria um novo array com a primeira letra de cada nome(item do array) maiuscula.
-    let correctNameArray = nameArray.map(name => {
       return name.charAt(0).toUpperCase() + name.slice(1)
-    })
-    
-    //Reduz o array jundando o nome
-    let newName = correctNameArray.reduce((acumulado, item) => {
-      return acumulado + (' ' + item)
-    })
 
-    //retorna o nome correto como string 
+    }).join(' ')
+
     return newName
     
   }
@@ -63,7 +65,17 @@
   console.log(fullNameSlug)
   console.log(slugToNormal(fullNameSlug)) //Nome corrigido pela função slugToNormal()
 
+  /*forma como o daciuk fez na correção:
 
+  let fullNameSlug = 'caio-cesar-de-souza-santos'
+  let newFullName = fullNameSlug.split('-').map(name => {
+    return name.charAt(0).toUpperCase() + name.slice(1)
+  }).join(' ')
+
+  console.log(fullNameSlug)
+  console.log(slugToNormal(newFullName))
+
+  */
 
   /*
   - Crie um array com 5 nomes. Reduza esses nomes a uma única string, separando
@@ -74,21 +86,34 @@
   - Detalhe: o código abaixo deve funcionar com um array de qualquer tamanho.
   5 nomes foi somente uma sugestão ;)
   */
+
   console.log( '\nMeus amigos:' );  
 
   function fraseAmigos(amigosArray) {
-    let nomesReduzidos = amigosArray.reduceRight((acumulado, item, index, array) => {
-      return (item + ', ') + acumulado
+    let nomesReduzidos = amigosArray.reduce((acumulado, item, index) => {
+      return acumulado + (', ' + item) 
     })
 
-    let tamanhoArray = amigosArray.length - 1
+    let indexPenultimoItem = amigosArray.length - 1
 
-    return nomesReduzidos.replace( ', ' + (amigosArray[tamanhoArray]), ' e ' + amigosArray[tamanhoArray])
-                  .concat(' são meus amigos.')
+    return nomesReduzidos.replace( ', ' + (amigosArray[indexPenultimoItem]), ' e ' + amigosArray[indexPenultimoItem])
+                         .concat(' são meus amigos.')
   }
 
-  let nomesArray = ['Caio', 'Gisele', 'Geisa', 'Cassio']   
-  console.log(fraseAmigos(nomesArray)) 
+  let friends = ['Caio', 'Gisele', 'Geisa', 'Cassio']   
+  console.log(fraseAmigos(friends))
+
+  /* Forma como o daciuk fez na correção:
+
+  let friends = ['Caio', 'Gisele', 'Geisa', 'Cassio']
+
+  var phase = friends.reduce((acumulado, atual, index) => {
+    var separador = friends.length - 1 === index ? ' e ' : ', '
+    return acumulado + separador + atual
+  }).concat(' são meus amigos.')
+
+  console.log(fraseAmigos(phase))
+  */
 
   /*
   Usando o replace(), faça a string "Roberto" virar "Roberta".
@@ -104,6 +129,7 @@
   faz a busca do final para o início da string.
   */
   console.log( '\nParte de uma string:' );
+
   let outroNome = 'Fernando'
 
   console.log(outroNome.substring(8, 3))
@@ -119,7 +145,7 @@
   */
   console.log( '\nNome com letras intercaladas entre caixa alta e baixa:' );
   
-  let myName = 'gabriEla'
+  let myName = 'CaiO'
 
   function transformName(name) {
     let arrayName = name.split('')
@@ -134,5 +160,7 @@
   }
 
   console.log(transformName(myName))
+
+
 
 })()

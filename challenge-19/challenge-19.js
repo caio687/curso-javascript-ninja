@@ -26,7 +26,7 @@
   no console:
   */
   console.log( 'Regex para números usando o construtor:' );
-  const justNumbersRegex = RegExp(/^\d\d/, 'gm')
+  const justNumbersRegex = new RegExp('^\\d+', 'gm')
 
   console.log(justNumbersRegex)
 
@@ -48,7 +48,7 @@
   Mostre a regex no console:
   */
   console.log( '\nRegex para números somente no final das linhas:' );
-  const numbersAtTheEnd = RegExp(/\d+$/, 'gm')
+  const numbersAtTheEnd = /\d+$/gm
   console.log(numbersAtTheEnd)
 
   /*
@@ -88,9 +88,9 @@
   console.log( '\nQuais classes CSS existem na marcação abaixo?\n\n', markup, '\n' );
   
   function hasClass(markup, cssClass) {
-    const regex =  RegExp(cssClass)
+    const regex =  new RegExp('class=["\'](?:[\\w\\s]+)?' + cssClass + '(?:[\\w\\s]+)?["\']')
     const result = regex.test(markup)
-    console.log(regex)
+    
     
     return  result + ' para a classe ' + cssClass
   }

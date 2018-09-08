@@ -24,6 +24,11 @@
 	
 	alert('Bem vindo ' + username)
 
+	//Forma feito pelo Daciuk na correção do exercicio
+	let username = prompt('Qual o seu nome?') || 'Desconhecido'
+	alert
+	alert('Bem vindo ' + username)
+
 	/*
 	Agora, pergunte ao usuário "Qual o seu e-mail?", atribuindo o resultado à
 	uma variável chamada `email`.
@@ -36,7 +41,8 @@
 	*/
 	const $inputUsername = document.querySelectorAll('input')[0]
 
-	console.log($inputUsername)
+	//Feito pelo Daciuk na correção do exercicio:
+	const $inputUsername = document.querySelector('input[type="text"]')
 
 	/*
 	- Selecione o input de "Email", atribuindo-o à uma variável chamada
@@ -44,15 +50,17 @@
 	*/
 	const $inputEmail = document.querySelectorAll('input')[1]
 
-	console.log($inputEmail)
+	//Feito pelo Daciuk na correção do exercicio:
+	const $inputEmail = document.querySelector('input[type="email"]')
 
+	
 	/*
 	- Selecione o campo de "Mensagem", atribuindo-o à uma variável chamada
 	`$message`.
 	*/
 	
 	const $message = document.querySelector('textarea')
-	console.log($message)
+	
 
 	/*
 	- Selecione o botão de envio do formulário, atribuindo-o à uma variável
@@ -94,29 +102,50 @@
 	*/
 	$button.addEventListener('click', (event) => {
 		
-		event.preventDefault()
+		event.preventDefault()		
 
-		let campos = [$inputUsername, $inputEmail, $message]
-
-		if(!campos[$inputUsername])
-			alert("Preencha o nome do usuário!")
+		if ($inputUsername.value && $inputEmail.value && $message.value && isValidEmail($inputEmail.value)){
+			const formOk = confirm("Tem certeza que deseja enviar o formulário?")
 			
-		if(!campos[$inputEmail])
+			if (formOk) {
+				alert('Enviado com sucesso!')	
+			} else {
+				alert('Não enviado')
+			}			
+		}
+		if ($inputUsername.value == '')
+			alert("Preencha o nome do usuário!")
+		if ($inputEmail.value == '')
 			alert("Preencha o e-mail!")
-
-		if(!campos[$message])
+		if ($message.value == '')
 			alert("Preencha a mensagem!")
-
-		if(!isValidEmail(campos[$inputEmail]))
+		if (!isValidEmail($inputEmail.value))
 			alert("Entre com um e-mail válido!")
-		
-		if(campos.every(campo => {
-			return campo
-		}) && isValidEmail(campos[$inputEmail])
-			confirm("Tem certeza que deseja enviar o formulário?")
-		
+	}, false)
 
-	})
+	//Forma feita pelo Daciuk na correção do Exercicio:
+	$button.addEventListener('click', (event) => {
+		
+		event.preventDefault()		
+
+		if (!$inputUsername.value)
+			return alert("Preencha o nome do usuário!")
+
+		if (!$inputEmail.value)
+			return alert("Preencha o e-mail!")
+
+		if (!$message.value)
+			return alert("Preencha a mensagem!")
+
+		if (!isValidEmail($inputEmail.value))
+			return alert("Entre com um e-mail válido!")
+
+		if(!confirm("Tem certeza que deseja enviar o formulário?"))
+			return alert('Não enviado')
+
+		return alert('Enviado com sucesso!')
+		
+	}, false)
 
 	/*
 	Crie uma função chamada `isValidEmail`, que será usada na validação do
@@ -144,6 +173,11 @@
 			- "rita-marica@titica.a.b"
 			- "agua_@evida.br.com"
 	*/
-	// ?
+	function isValidEmail(email) {
+
+		const regex = /^[\w+.]+@\w+\.+\w{2,}(?:.+\w{1,2})?$/
+
+		return regex.test(email)
+	}
 
 })(window, document)
